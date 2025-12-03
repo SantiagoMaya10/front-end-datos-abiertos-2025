@@ -10,9 +10,12 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Download, Sparkles, TrendingDown, TrendingUp } from "lucide-react"
 
 const escenarios = [
-  { id: "pasivos", label: "Variación pasivos" },
-  { id: "tasa_interes", label: "Variación de la tasa de interés" },
-  { id: "tasa_cambio", label: "Variación de la tasa de cambio" },
+  { id: "pasivos", label: "Variación pasivos", unit: "millones COP" },
+  { id: "tasa_interes", label: "Variación de la tasa de interés", unit: "%" },
+  { id: "tasa_cambio", label: "Variación de la tasa de cambio", unit: "COP por USD" },
+  { id: "inflacion", label: "Variación de la inflación", unit: "%" },
+  { id: "desempleo", label: "Variación del desempleo", unit: "%" },
+  { id: "pib", label: "Variación del PIB departamental", unit: "%" },
 ]
 
 const sectores = [
@@ -68,6 +71,7 @@ Si la utilidad caerá ${Math.abs(prediccion?.variacion || 5)}%, necesitas confir
 
   const escenarioLabel = escenarios.find((e) => e.id === selectedEscenario)?.label.toLowerCase() || ""
   const sectorLabel = sectores.find((s) => s.id === selectedSector)?.label.toLowerCase() || ""
+  const escenarioUnit = escenarios.find((e) => e.id === selectedEscenario)?.unit || ""
 
   return (
     <div className="p-8">
@@ -89,11 +93,15 @@ Si la utilidad caerá ${Math.abs(prediccion?.variacion || 5)}%, necesitas confir
               <CardTitle className="text-[#3c5a99]">Seleccione escenario</CardTitle>
             </CardHeader>
             <CardContent>
-              <RadioGroup value={selectedEscenario} onValueChange={setSelectedEscenario}>
+              <RadioGroup
+                value={selectedEscenario}
+                onValueChange={setSelectedEscenario}
+                className="grid grid-cols-2 gap-3"
+              >
                 {escenarios.map((escenario) => (
                   <div key={escenario.id} className="flex items-center space-x-2">
                     <RadioGroupItem value={escenario.id} id={escenario.id} />
-                    <Label htmlFor={escenario.id} className="cursor-pointer">
+                    <Label htmlFor={escenario.id} className="cursor-pointer text-sm">
                       {escenario.label}
                     </Label>
                   </div>
@@ -141,7 +149,7 @@ Si la utilidad caerá ${Math.abs(prediccion?.variacion || 5)}%, necesitas confir
                   className="w-32"
                   placeholder="1000"
                 />
-                <span className="text-sm text-muted-foreground">millones COP?</span>
+                <span className="text-sm text-muted-foreground">{escenarioUnit}?</span>
               </div>
               <Button
                 onClick={handlePrediccion}
