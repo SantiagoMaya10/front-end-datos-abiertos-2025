@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Download, Sparkles, TrendingDown, TrendingUp } from "lucide-react"
 
 const escenarios = [
@@ -27,9 +28,46 @@ const sectores = [
   { id: "construccion", label: "Construcción" },
 ]
 
+const departamentos = [
+  "Amazonas",
+  "Antioquia",
+  "Arauca",
+  "Atlántico",
+  "Bolívar",
+  "Boyacá",
+  "Caldas",
+  "Caquetá",
+  "Casanare",
+  "Cauca",
+  "Cesar",
+  "Chocó",
+  "Córdoba",
+  "Cundinamarca",
+  "Guainía",
+  "Guaviare",
+  "Huila",
+  "La Guajira",
+  "Magdalena",
+  "Meta",
+  "Nariño",
+  "Norte de Santander",
+  "Putumayo",
+  "Quindío",
+  "Risaralda",
+  "San Andrés y Providencia",
+  "Santander",
+  "Sucre",
+  "Tolima",
+  "Valle del Cauca",
+  "Vaupés",
+  "Vichada",
+  "Bogotá D.C.",
+]
+
 export function EscenariosPage() {
   const [selectedEscenario, setSelectedEscenario] = useState("pasivos")
   const [selectedSector, setSelectedSector] = useState("servicios")
+  const [selectedDepartamento, setSelectedDepartamento] = useState("Antioquia")
   const [valor, setValor] = useState("1000")
   const [prediccion, setPrediccion] = useState<{ variacion: number; tipo: "positivo" | "negativo" } | null>(null)
   const [recomendacion, setRecomendacion] = useState<string | null>(null)
@@ -116,9 +154,9 @@ Si la utilidad caerá ${Math.abs(prediccion?.variacion || 5)}%, necesitas confir
               <CardTitle className="text-[#3c5a99]">Seleccione sector</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-2">
                 {sectores.map((sector) => (
-                  <div key={sector.id} className="flex items-center space-x-2">
+                  <div key={sector.id} className="flex items-center space-x-1.5">
                     <Checkbox
                       id={sector.id}
                       checked={selectedSector === sector.id}
@@ -133,11 +171,32 @@ Si la utilidad caerá ${Math.abs(prediccion?.variacion || 5)}%, necesitas confir
             </CardContent>
           </Card>
 
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-[#3c5a99]">Seleccione departamento</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Select value={selectedDepartamento} onValueChange={setSelectedDepartamento}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Seleccione un departamento" />
+                </SelectTrigger>
+                <SelectContent>
+                  {departamentos.map((depto) => (
+                    <SelectItem key={depto} value={depto}>
+                      {depto}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </CardContent>
+          </Card>
+
           {/* Valor y Pregunta */}
           <Card>
             <CardHeader>
               <CardTitle className="text-[#3c5a99] text-base">
-                ¿Qué le pasaría a las ganancias en el sector {sectorLabel} si hay una {escenarioLabel} en un valor de:
+                ¿Qué le pasaría a las ganancias en el sector {sectorLabel} en {selectedDepartamento} si hay una{" "}
+                {escenarioLabel} en un valor de:
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -188,7 +247,7 @@ Si la utilidad caerá ${Math.abs(prediccion?.variacion || 5)}%, necesitas confir
                     {prediccion.variacion > 0 ? "+" : ""}
                     {prediccion.variacion}%
                   </span>{" "}
-                  para el sector {sectorLabel}
+                  para el sector {sectorLabel} en {selectedDepartamento}
                 </p>
               </CardContent>
             </Card>
