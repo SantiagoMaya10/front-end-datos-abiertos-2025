@@ -13,9 +13,9 @@ export function Sidebar({ currentPage, setCurrentPage }: SidebarProps) {
     { id: "quienes-somos", label: "¿Quiénes somos?" },
     { id: "solucion", label: "Solución" },
     { id: "escenarios", label: "Escenarios" },
-    { id: "alcance", label: "Alcance" },
     { id: "dataset", label: "Conjunto de Datos" },
     { id: "dashboard", label: "Dashboard" },
+    { id: "alcance", label: "Alcance" },
     { id: "impacto", label: "Impacto" },
   ]
 
