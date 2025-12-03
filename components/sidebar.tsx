@@ -12,10 +12,10 @@ export function Sidebar({ currentPage, setCurrentPage }: SidebarProps) {
     { id: "crece-col", label: "CRECE-Col" },
     { id: "quienes-somos", label: "¿Quiénes somos?" },
     { id: "solucion", label: "Solución" },
+    { id: "escenarios", label: "Escenarios" },
     { id: "alcance", label: "Alcance" },
     { id: "dataset", label: "Conjunto de Datos" },
     { id: "dashboard", label: "Dashboard" },
-    { id: "escenarios", label: "Escenarios" },
     { id: "impacto", label: "Impacto" },
   ]
 
