@@ -348,7 +348,7 @@ export function DatasetPage() {
       <div className="grid md:grid-cols-4 gap-4 mb-8">
         <Card>
           <CardContent className="p-4 text-center">
-            <p className="text-2xl font-bold text-[#3c5a99]">10</p>
+            <p className="text-2xl font-bold text-[#3c5a99]">10K</p>
             <p className="text-sm text-muted-foreground">Empresas</p>
           </CardContent>
         </Card>
