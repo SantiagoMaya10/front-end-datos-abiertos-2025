@@ -193,6 +193,7 @@ export function ImpactoPage() {
                     <CardTitle className="text-lg text-orange-600">Especialización</CardTitle>
                   </CardHeader>
                   <CardContent className="text-sm text-gray-600 space-y-2">
+                    <p>Optimización de hiperparámetros.</p>
                     <p>Segmentación por sector y tamaño.</p>
                     <p>Validación cruzada, optimización y ensembles.</p>
                     <p>Análisis de explicabilidad (SHAP).</p>

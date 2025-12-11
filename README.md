@@ -14,7 +14,7 @@ Any changes you make to your deployed app will be automatically pushed to this r
 
 Your project is live at:
 
-**[https://vercel.com/lmayar-3210s-projects/v0-mockup-page-generation](https://vercel.com/lmayar-3210s-projects/crece-col)**
+**[https://vercel.com/lmayar-3210s-projects/v0-mockup-page-generation](https://vercel.com/lmayar-3210s-projects/v0-mockup-page-generation)**
 
 ## Build your app
 
