@@ -63,7 +63,7 @@ export function AlcancePage() {
                     <line x1="18" y1="16" x2="15" y2="14" />
                   </svg>
                 </div>
-                <CardTitle className="text-2xl text-[#3c5a99]">Prueba de Concepto: Modelo XGBoost Regressor</CardTitle>
+                <CardTitle className="text-2xl text-[#3c5a99]">Modelo XGBoost Regressor</CardTitle>
               </div>
             </CardHeader>
             <CardContent className="pt-6">
