@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Download, Sparkles, TrendingDown, TrendingUp } from "lucide-react"
+import { Download, Sparkles, TrendingDown, TrendingUp, ExternalLink } from "lucide-react"
 
 const escenarios = [
   { id: "pasivos", label: "Variación pasivos", unit: "millones COP" },
@@ -210,13 +210,24 @@ Si la utilidad caerá ${Math.abs(prediccion?.variacion || 5)}%, necesitas confir
                 />
                 <span className="text-sm text-muted-foreground">{escenarioUnit}?</span>
               </div>
-              <Button
-                onClick={handlePrediccion}
-                disabled={isLoading}
-                className="w-full bg-[#3c5a99] hover:bg-[#3c5a99]/90"
-              >
-                {isLoading ? "Calculando..." : "Enviar al modelo para predicción"}
-              </Button>
+              <div className="flex items-center gap-3">
+                <Button
+                  onClick={handlePrediccion}
+                  disabled={isLoading}
+                  className="flex-1 bg-[#3c5a99] hover:bg-[#3c5a99]/90"
+                >
+                  {isLoading ? "Calculando..." : "Enviar al modelo para predicción"}
+                </Button>
+                <a
+                  href="https://crece-col-ml-api-production.up.railway.app/docs#/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-sm text-[#3c5a99] hover:underline whitespace-nowrap"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Ver API
+                </a>
+              </div>
             </CardContent>
           </Card>
         </div>
