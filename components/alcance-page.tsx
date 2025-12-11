@@ -3,30 +3,7 @@
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-
-const variablesOriginales = [
-  { name: "Empresa", desc: "Nombre de la empresa registrada" },
-  { name: "NIT", desc: "Número de Identificación Tributaria" },
-  { name: "Región", desc: "Región geográfica de Colombia" },
-  { name: "Departamento", desc: "Departamento donde opera la empresa" },
-  { name: "Activos", desc: "Total de activos de la empresa" },
-  { name: "Pasivos", desc: "Total de pasivos/deudas" },
-  { name: "Patrimonio", desc: "Patrimonio neto de la empresa" },
-  { name: "Ingresos", desc: "Ingresos operacionales" },
-  { name: "Ganancias", desc: "Ganancia o pérdida neta" },
-  { name: "Año", desc: "Año fiscal del registro" },
-]
-
-const variablesMacro = [
-  { name: "Tasa de interés", desc: "Tasa de interés del Banco de la República" },
-  { name: "Inversión directa", desc: "Inversión extranjera directa" },
-  { name: "Desempleo", desc: "Tasa de desempleo nacional" },
-  { name: "Inflación", desc: "Tasa de inflación anual" },
-  { name: "IPC", desc: "Índice de Precios al Consumidor" },
-  { name: "Tasa de cambio USD", desc: "Tasa de cambio peso/dólar" },
-  { name: "PIB departamental", desc: "Producto Interno Bruto por departamento" },
-]
+import { TooltipProvider } from "@/components/ui/tooltip"
 
 export function AlcancePage() {
   const [hoveredMetric, setHoveredMetric] = useState<string | null>(null)
@@ -176,77 +153,6 @@ export function AlcancePage() {
             </CardContent>
           </Card>
 
-          {/* Variables Utilizadas */}
-          <Card className="border border-gray-200">
-            <CardHeader>
-              <CardTitle className="text-xl text-[#3c5a99]">Variables utilizadas en el modelo</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 bg-[#3c5a99] rounded-lg flex items-center justify-center">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                        <path d="M3 21h18" />
-                        <path d="M9 8h1" />
-                        <path d="M9 12h1" />
-                        <path d="M9 16h1" />
-                        <path d="M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16" />
-                      </svg>
-                    </div>
-                    <h3 className="font-semibold text-gray-700">Variables originales del dataset</h3>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {variablesOriginales.map((v) => (
-                      <Tooltip key={v.name}>
-                        <TooltipTrigger>
-                          <Badge
-                            variant="secondary"
-                            className="bg-gray-100 hover:bg-gray-200 text-gray-700 cursor-help transition-colors"
-                          >
-                            {v.name}
-                          </Badge>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{v.desc}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="M2 12h20" />
-                        <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
-                      </svg>
-                    </div>
-                    <h3 className="font-semibold text-gray-700">Variables macroeconómicas añadidas</h3>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {variablesMacro.map((v) => (
-                      <Tooltip key={v.name}>
-                        <TooltipTrigger>
-                          <Badge
-                            variant="secondary"
-                            className="bg-green-50 hover:bg-green-100 text-green-700 cursor-help transition-colors"
-                          >
-                            {v.name}
-                          </Badge>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{v.desc}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
           {/* Métricas de Desempeño */}
           <div>
             <h2 className="text-2xl font-bold text-[#3c5a99] mb-6">Parámetros de validación del modelo</h2>
@@ -387,89 +293,6 @@ export function AlcancePage() {
             </Card>
           </div>
 
-          {/* Bloques narrativos: ¿Es un modelo útil? */}
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="border border-gray-200">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg text-gray-700">¿Es un modelo útil?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  La respuesta depende del contexto. Se trata de una <strong>prueba de concepto</strong> que sirve como
-                  punto de partida para entender patrones en los datos empresariales colombianos.
-                </p>
-                <p className="text-sm text-gray-500 mt-3">
-                  No está pensado para decisiones financieras críticas aisladas, sino como herramienta exploratoria y de
-                  benchmark.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-green-200 bg-green-50/30">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg text-green-700">Fortalezas del modelo</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  {[
-                    { text: "MAE bajo (0.015): predicciones razonables para empresas 'normales'" },
-                    { text: "Feature importance clara: INGRESOS OPERACIONALES ~36% de importancia" },
-                    { text: "Baseline establecido: punto de comparación para futuros modelos" },
-                    { text: "Integración con dashboard y escenarios de simulación" },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#16a34a"
-                        strokeWidth="2"
-                        className="flex-shrink-0 mt-0.5"
-                      >
-                        <path d="M20 6L9 17l-5-5" />
-                      </svg>
-                      <span className="text-sm text-gray-600">{item.text}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-amber-200 bg-amber-50/30">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg text-amber-700">Limitaciones</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  {[
-                    { text: "R² bajo (14.65%): solo explica una pequeña parte de la variabilidad" },
-                    { text: "Dependencia de factores no incluidos: estrategia empresarial, eventos únicos" },
-                    { text: "RMSE alto (0.27): predicciones con errores significativos" },
-                    { text: "No apto para decisiones críticas sin validación adicional" },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#d97706"
-                        strokeWidth="2"
-                        className="flex-shrink-0 mt-0.5"
-                      >
-                        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
-                        <line x1="12" y1="9" x2="12" y2="13" />
-                        <line x1="12" y1="17" x2="12.01" y2="17" />
-                      </svg>
-                      <span className="text-sm text-gray-600">{item.text}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-
           {/* Zona de uso recomendado vs no recomendado */}
           <div className="grid md:grid-cols-2 gap-6">
             <Card className="border-2 border-green-300 bg-gradient-to-br from-green-50 to-green-100/50">
@@ -537,81 +360,6 @@ export function AlcancePage() {
               </CardContent>
             </Card>
           </div>
-
-          {/* Oportunidades de mejora futura */}
-          <Card className="border border-gray-200">
-            <CardHeader>
-              <CardTitle className="text-xl text-[#3c5a99]">
-                Oportunidades de mejora del modelo (próximo alcance)
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="relative">
-                  <div className="absolute -top-3 left-4">
-                    <Badge className="bg-[#3c5a99] text-white">Fase 1</Badge>
-                  </div>
-                  <div className="border-2 border-[#3c5a99]/20 rounded-xl p-5 pt-6 h-full">
-                    <h4 className="font-semibold text-gray-700 mb-3">Más features específicas</h4>
-                    <ul className="space-y-2 text-sm text-gray-600">
-                      <li>Ratios financieros: ROE, ROA, margen de utilidad</li>
-                      <li>Indicadores de crecimiento YoY</li>
-                      <li>Número de empleados, antigüedad</li>
-                      <li>Variables de competencia sectorial</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="relative">
-                  <div className="absolute -top-3 left-4">
-                    <Badge className="bg-[#5a7dc9] text-white">Fase 2</Badge>
-                  </div>
-                  <div className="border-2 border-[#5a7dc9]/20 rounded-xl p-5 pt-6 h-full">
-                    <h4 className="font-semibold text-gray-700 mb-3">Modelos segmentados</h4>
-                    <ul className="space-y-2 text-sm text-gray-600">
-                      <li>Modelos por tamaño de empresa</li>
-                      <li>Modelos especializados por macrosector</li>
-                      <li>Captura de patrones específicos</li>
-                      <li>Mejora del R² por segmento</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="relative">
-                  <div className="absolute -top-3 left-4">
-                    <Badge className="bg-[#7c9fd9] text-white">Fase 3</Badge>
-                  </div>
-                  <div className="border-2 border-[#7c9fd9]/20 rounded-xl p-5 pt-6 h-full">
-                    <h4 className="font-semibold text-gray-700 mb-3">Mejoras técnicas</h4>
-                    <ul className="space-y-2 text-sm text-gray-600">
-                      <li>Grid Search / Bayesian Optimization</li>
-                      <li>Validación cruzada K-Fold</li>
-                      <li>Ensembles: LightGBM, Random Forest</li>
-                      <li>Información temporal y estacionalidad</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Callout final */}
-              <div className="mt-8 bg-blue-50 border border-blue-200 rounded-xl p-5">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                      <circle cx="12" cy="12" r="10" />
-                      <line x1="12" y1="16" x2="12" y2="12" />
-                      <line x1="12" y1="8" x2="12.01" y2="8" />
-                    </svg>
-                  </div>
-                  <p className="text-sm text-blue-800">
-                    Esta versión del modelo demuestra que es posible anticipar parcialmente el comportamiento de las
-                    ganancias sectoriales. Las siguientes fases buscarán aumentar su capacidad explicativa, integrarlo
-                    con más fuentes de datos y acercarlo a casos de uso productivos dentro de la Superintendencia.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </TooltipProvider>
