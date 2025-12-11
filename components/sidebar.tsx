@@ -10,6 +10,7 @@ interface SidebarProps {
 export function Sidebar({ currentPage, setCurrentPage }: SidebarProps) {
   const menuItems = [
     { id: "crece-col", label: "CRECE-Col" },
+    { id: "instrumentos", label: "Instrumentos externos" },
     { id: "quienes-somos", label: "¿Quiénes somos?" },
     { id: "solucion", label: "Solución" },
     { id: "escenarios", label: "Escenarios" },

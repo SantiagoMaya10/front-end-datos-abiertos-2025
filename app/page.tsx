@@ -10,6 +10,7 @@ import { CreceColPage } from "@/components/crece-col-page"
 import { SolucionPage } from "@/components/solucion-page"
 import { AlcancePage } from "@/components/alcance-page"
 import { ImpactoPage } from "@/components/impacto-page"
+import { InstrumentosPage } from "@/components/instrumentos-page"
 
 export default function Page() {
   const [currentPage, setCurrentPage] = useState("crece-col")
@@ -19,6 +20,7 @@ export default function Page() {
       <Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <main className="flex-1 overflow-auto">
         {currentPage === "crece-col" && <CreceColPage />}
+        {currentPage === "instrumentos" && <InstrumentosPage />}
         {currentPage === "quienes-somos" && <HomePage />}
         {currentPage === "solucion" && <SolucionPage />}
         {currentPage === "alcance" && <AlcancePage />}
